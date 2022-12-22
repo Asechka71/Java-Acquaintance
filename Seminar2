@@ -1,0 +1,52 @@
+public class Main {
+    public static void main(String[] args) {
+//        1.Напишите программу, чтобы найти вхождение в строке (содержащей все символы другой строки).
+        String str1 = "Hello my dear friend!";
+        String str2 = "dear friend";
+        System.out.println(str1.contains(str2));
+//        2.Напишите программу, чтобы проверить, являются ли две данные строки вращением друг друга (вхождение в обратном порядке).
+        StringBuilder sb = new StringBuilder("1234");
+        StringBuilder a = new StringBuilder(sb.reverse());
+        StringBuilder b = new StringBuilder("4321");
+        int result = a.compareTo(b);
+        if (result == 0)
+        {
+            System.out.println("\"" + a + "\"" +
+                    " is equal to " +
+                    "\"" + b + "\"");
+        }
+        else System.out.println("\"" + a + "\"" +
+                " is not equal to " +
+                "\"" + b + "\"");
+//        4.Дано два числа, например 3 и 56, необходимо составить следующие строки: 3 + 56 = 59 3 – 56 = -53 3 * 56 = 168 Используем метод StringBuilder.append().
+        int x = 3;
+        int y = 56;
+        StringBuilder sbu = new StringBuilder();
+        sbu.append(x);
+        sbu.append("+");
+        sbu.append(y);
+        sbu.append("=");
+        sbu.append(x+y);
+        sbu.append(" ");
+        sbu.append(x);
+        sbu.append("-");
+        sbu.append(y);
+        sbu.append("=");
+        sbu.append(x-y);
+        sbu.append(" ");
+        sbu.append(x);
+        sbu.append("*");
+        sbu.append(y);
+        sbu.append("=");
+        sbu.append(x*y);
+        System.out.println(sbu);
+//        5.Замените символ “=” на слово “равно”. Используйте методы StringBuilder.insert(),StringBuilder.deleteCharAt().
+        boolean k;
+        k = sbu.toString().contains("=");
+        while (k == true) {
+            int index = sbu.indexOf("=");
+            sbu.deleteCharAt(index);
+            sbu.insert(index," равно ");
+            k = sbu.toString().contains("=");
+        }
+        System.out.println(sbu);
