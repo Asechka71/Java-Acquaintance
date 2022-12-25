@@ -1,0 +1,46 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+//        1.Создать новый список, добавить несколько строк и вывести коллекцию на экран.
+        List<String> list = new ArrayList<>();
+        list.add("red");
+        list.add("blue");
+        list.add("yellow");
+        System.out.println(list);
+//        2.Итерация всех элементов списка цветов и добавления к каждому символа '!'.
+        System.out.println();
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i)+"!");
+        }
+//        3.Вставить элемент в список в первой позиции.
+        System.out.println();
+        list.add(0,"white");
+        System.out.println(list);
+//        4.Извлечь элемент (по указанному индексу) из заданного списка.
+        System.out.println();
+        System.out.println(list.get(2));
+//        5.Обновить определенный элемент списка по заданному индексу.
+        System.out.println();
+        list.set(2,"black");
+        System.out.println(list);
+//        6.Удалить третий элемент из списка.
+        System.out.println();
+        list.remove(2);
+        System.out.println(list);
+//        7.Поиска элемента в списке по строке.
+        System.out.println();
+        System.out.println(list.indexOf("red"));
+//        8.Создать новый список и добавить в него несколько елементов первого списка.
+        System.out.println();
+        List<String> listNew = list.subList(1, 3);
+        System.out.println(listNew);
+//        9.Удалить из первого списка все элементы отсутствующие во втором списке.
+        System.out.println();
+        System.out.println(list);
+        System.out.println(listNew);
+        list.retainAll(listNew);
+        System.out.println(list);
+    }
+}
