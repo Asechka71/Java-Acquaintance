@@ -1,52 +1,81 @@
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Scanner;
+import java.util.stream.Collectors;
 
-public class Main {
-    public static void main (String[] args) {
+class Employee {
 
-        List<String> names = new ArrayList<>(Arrays.asList("Olga", "Oleg"));
-        List<String> lNames = new ArrayList<>(Arrays.asList("Ivanova", "Sidorov"));
-        List<String> sNames = new ArrayList<>(Arrays.asList("Petrovna", "Ivanovich"));
-        List<Integer> ages = new ArrayList<>(Arrays.asList(34, 52));
-        List<Boolean> sexes = new ArrayList<>(Arrays.asList(true, false));
+    public int age;
+    public String fname;
+    public String lname;
+    public String sname;
+    public Boolean sex;
 
-        method(names, lNames, sNames, ages, sexes);
-       
+    // Student class constructor
+    Employee(int age, String fname, String lname, String sname, Boolean sex)
+    {
+        this.age = age;
+        this.fname = fname;
+        this.lname = lname;
+        this.sname = sname;
+        this.sex = sex;
 
     }
 
-    public static void method (List<String> lNames,List<String> names, List<String> sNames, List<Integer> ages, List<Boolean> sexes) {
-        Scanner scanner = new Scanner(System.in);
-        String value;
-        while(true) {
-
-            System.out.println("input -  lastName firstName secondName age sex: ");
-            value = scanner.nextLine();
-
-            if (value.equalsIgnoreCase("exit")) {
-                break;
-            }
-
-            String[] strings = value.split(" ");
-            String list_fname = strings[0];
-            String list_lname = strings[1];
-            String list_sname = strings[2];
-            int list_age = Integer.parseInt(strings[3]);
-            boolean list_sex = Boolean.parseBoolean(strings[4]);
-
-            names.add(list_fname);
-            lNames.add(list_lname);
-            sNames.add(list_sname);
-            ages.add(list_age);
-            sexes.add(list_sex);
-        }
-
-        System.out.println(names);
-        System.out.println(sNames);
-        System.out.println(ages);
-        System.out.println(sexes);
+    public int getAge() {
+        return age;
     }
 
+    public String getFirstName() {
+        return fname;
+    }
+
+    public char getLastName() {
+        return lname.charAt(0);
+    }
+    public String getSecondName() {
+        return sname;
+    }
+    public Boolean getSex() {
+        return sex;
+    }
+
+    @Override
+    public String toString() {
+// Override the default toString() method and return a custom String instead.
+        return String.format("%s\t%s\t%s\t%s\t%s",lname, fname, sname, age, sex);
+    }
+}
+
+public class Main
+{
+    public static void main(String[] args)
+    {
+        ArrayList<Employee> employees = getUnsortedEmployeeList();
+
+//Compare by first name and then last name
+        Comparator<Employee> compareByName = Comparator
+                .comparing(Employee::getAge)
+                .thenComparing(Employee::getSex)
+                .thenComparing(Employee::getLastName);
+
+        List<Employee> sortedEmployees = employees.stream()
+                .sorted(compareByName)
+                .collect(Collectors.toList());
+
+        sortedEmployees.forEach(System.out::println);
+    }
+
+    private static ArrayList<Employee> getUnsortedEmployeeList()
+    {
+        ArrayList<Employee> list = new ArrayList<>();
+        list.add( new Employee(11, "Lokesh", "Gupta", "Flou", true) );
+        list.add( new Employee(11, "Alex", "Gussin", "Stiv", false) );
+        list.add( new Employee(21, "Brian", "Sux", "Karon", false) );
+        list.add( new Employee(21, "Neon", "Piper", "Sloy", false) );
+        list.add( new Employee(31, "David", "Beckham","Tire", false) );
+        list.add( new Employee(31, "Alexa", "Beckham", "Karlova", true) );
+        list.add( new Employee(61, "Brian", "Suxena", "Puli", true) );
+        return list;
+    }
 }
