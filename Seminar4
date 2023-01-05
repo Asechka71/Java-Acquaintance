@@ -1,0 +1,52 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+    public static void main (String[] args) {
+
+        List<String> names = new ArrayList<>(Arrays.asList("Olga", "Oleg"));
+        List<String> lNames = new ArrayList<>(Arrays.asList("Ivanova", "Sidorov"));
+        List<String> sNames = new ArrayList<>(Arrays.asList("Petrovna", "Ivanovich"));
+        List<Integer> ages = new ArrayList<>(Arrays.asList(34, 52));
+        List<Boolean> sexes = new ArrayList<>(Arrays.asList(true, false));
+
+        method(names, lNames, sNames, ages, sexes);
+       
+
+    }
+
+    public static void method (List<String> lNames,List<String> names, List<String> sNames, List<Integer> ages, List<Boolean> sexes) {
+        Scanner scanner = new Scanner(System.in);
+        String value;
+        while(true) {
+
+            System.out.println("input -  lastName firstName secondName age sex: ");
+            value = scanner.nextLine();
+
+            if (value.equalsIgnoreCase("exit")) {
+                break;
+            }
+
+            String[] strings = value.split(" ");
+            String list_fname = strings[0];
+            String list_lname = strings[1];
+            String list_sname = strings[2];
+            int list_age = Integer.parseInt(strings[3]);
+            boolean list_sex = Boolean.parseBoolean(strings[4]);
+
+            names.add(list_fname);
+            lNames.add(list_lname);
+            sNames.add(list_sname);
+            ages.add(list_age);
+            sexes.add(list_sex);
+        }
+
+        System.out.println(names);
+        System.out.println(sNames);
+        System.out.println(ages);
+        System.out.println(sexes);
+    }
+
+}
