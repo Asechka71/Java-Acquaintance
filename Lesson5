@@ -1,0 +1,31 @@
+import java.util.*;
+public class Lesson5 {
+    public static void main(String[] args) {
+//  1.Создать словарь HashMap. Обобщение <Integer, String>.
+        HashMap <Integer, String> map = new HashMap<>();
+//  2.Заполнить пятью ключами (индекс, ФИО+Возраст+Пол "Иванов Иван Иванович 28 м"), добавить ключь, если не было!)
+        map.put(1, "Иванов Иван Иванович 28 м");
+        map.put(2, "Васильев Василий Васильевич 34 м");
+        map.put(3, "Александрова Александра Александровна 45 ж");
+        map.put(4, "Петров Петр Петрович 25 м");
+        map.put(5, "Никитина Елизавета Васильевна 27 ж");
+        map.forEach((k,v)-> System.out.println(k+"-"+v));
+//  3.Изменить значения сделав пол большой буквой.
+        for (int i = 1; i < map.size()+1; i++) {
+            map.merge(i,"One", (v1,v2)-> v1.substring(0,v1.length() - 1)+v1.substring(v1.length()-1).toUpperCase());
+        }
+        System.out.println();
+        map.forEach((k,v)-> System.out.println(k+"-"+v));
+//  4.Пройти по коллекции и вывести значения в формате Фамилия инициалы "Иванов И.И."
+        for (int i = 1; i < map.size()+1; i++) {
+            String[] result = map.get(i).split(" ");
+            String result1 = result[1].substring(0,1);
+            String result2 = result[2].substring(0,1);
+
+            map.put(i, result[0]+ " " + result1 + "." + result2 + ". " + result[3] + " " + result[4]);
+        }
+
+        System.out.println();
+        map.forEach((k,v)-> System.out.println(k+"-"+v));
+    }
+}
